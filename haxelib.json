@@ -1,6 +1,7 @@
 {
   "name": "ufront",
   "license": "MIT",
+  "classPath": "src",
   "tags": ["ufront","web","cli","shell","interactive","neko"],
   "description": "A command line tool to help you manage your ufront project.",
   "contributors": ["jason"],
