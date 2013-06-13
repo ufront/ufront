@@ -5,8 +5,8 @@
   "tags": ["ufront","web","cli","shell","interactive","neko"],
   "description": "A command line tool to help you manage your ufront project.",
   "contributors": ["jason"],
-  "releasenote": "Initial Release",
-  "version": "1.0.0-beta.1",
+  "releasenote": "Initial Release. For early adopters only at this point, things subject to change.",
+  "version": "1.0.0-alpha.1",
   "url": "https://github.com/ufront/ufront-uftool",
   "dependencies": {
     "ufront-mvc": "",
@@ -15,6 +15,6 @@
     "ufront-easyauth": "",
     "ufront-clientds": "",
     "ufront-ufadmin": "",
-    "ufront-uftool": ""
+    "ufront-uftasks": ""
   }
 }
