@@ -149,7 +149,7 @@ class UFTool extends mcli.CommandLine {
         var args = args();
         var calledFrom = new Path( executablePath() );
         var ufrontDir = getCwd();
-        if ( calledFrom.file=="haxelib" ) {
+        if ( calledFrom.file=="haxelib" || calledFrom.file=="ufront" ) {
             setCwd( args.pop() );
         } else {
             println("We are making the assumption that you are running `neko run.n` from the ufront haxelib folder. Use `haxelib run ufront` to be sure.");
