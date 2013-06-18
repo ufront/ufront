@@ -1,18 +1,23 @@
 package ufront.tool;
 
+import haxe.ds.StringMap;
 import haxe.io.Path;
+import mcli.CommandLine;
+import mcli.Dispatch;
 import sys.FileSystem;
 import sys.net.Host;
 import Sys.*;
 using StringTools;
 
 /**
-    -------
-    UFTool:
-    A command line tool to help you manage your ufront project.  Usage:
-    -------
+    -------------------------------------------------------------------
+    Ufront Tool:
+    A command line tool to help you manage your ufront project.  
+    -------------------------------------------------------------------
+
+    Usage:
 **/
-class UFTool extends mcli.CommandLine {
+class UFTool extends CommandLine {
 
     var ufrontDir:String;
     
@@ -44,30 +49,8 @@ class UFTool extends mcli.CommandLine {
         Build the current project
         @alias b
     **/
-    public function build(?target:String) {
-        if ( target!=null && target.endsWith(".hxml") ) target = target.substr(0,-5);
-        var buildFiles = [ for ( f in FileSystem.readDirectory(getCwd()) ) if (f.endsWith(".hxml")) f ];
-
-        var exitCode = 0;
-        var numBuilds = 0;
-        for ( hxml in buildFiles ) {
-            if ( target!=null && hxml!='$target.hxml' ) continue;
-
-            println ('Build $hxml');
-            
-            if ( Sys.command("haxe", [hxml]) == 0 ) 
-                numBuilds++;
-            else {
-                println ('Build failed\n');
-                exitCode = 1;
-            }
-        }
-
-        if ( target!=null && numBuilds==0 ) { 
-            println('Build $target.hxml not found');
-            exitCode = 1;
-        }
-        exit(exitCode);
+    public function build( d:Dispatch ) {
+        d.dispatch(new BuildCommand());
     }
     
     /**
@@ -132,7 +115,7 @@ class UFTool extends mcli.CommandLine {
         exit(0);
     }
 
-	public function runDefault() {
+    public function runDefault() {
         help();
     }
 
@@ -145,7 +128,7 @@ class UFTool extends mcli.CommandLine {
         exit(0);
     }
 
-	public static function main() {
+    public static function main() {
         var args = args();
         var calledFrom = new Path( executablePath() );
         var ufrontDir = getCwd();
@@ -156,4 +139,104 @@ class UFTool extends mcli.CommandLine {
         }
         new mcli.Dispatch( args ).dispatch( new UFTool(ufrontDir) );
     }
+}
+
+class UfrontCommand extends CommandLine
+{
+    /**
+        print this message
+        @command
+        @alias h
+    **/
+    public function help()
+    {
+        Sys.println(this.toString());
+        exit(0);
+    }
+}
+
+/**
+    -------------------------------------------------------------------
+    Ufront Tool:
+      ufront build
+    
+    Builds one or all of your project hxml files.  
+    -------------------------------------------------------------------
+
+    Usage:
+**/
+class BuildCommand extends UfrontCommand
+{
+    /**
+        be verbose
+        @alias v
+    **/
+    public var verbose:Bool;
+
+    /**
+        Flag to compile in debug mode
+        @alias d
+    **/
+    public var debug:Bool;
+
+    /**
+        A comma separated list of -D defines to pass to the compiler
+        @alias D
+    **/
+    public var define:String;
+
+    /**
+        Change the dead code elimination level (full,std,no)
+    **/
+    public var dce:DCELevel;
+
+    public function runDefault( ?target:String )
+    {
+        if ( target!=null && target.endsWith(".hxml") ) target = target.substr(0,-5);
+        var buildFiles = [ for ( f in FileSystem.readDirectory(getCwd()) ) if (f.endsWith(".hxml")) f ];
+
+        var exitCode = 0;
+        var foundBuilds = 0;
+
+        var args = [];
+        if ( define!=null ) for ( arg in define.split(",") ) {
+            args.push( "-D" );
+            args.push( arg );
+        }
+        if ( dce!=null ) { 
+            args.push( "-dce" );
+            args.push( Std.string(dce) );
+        }
+        if ( debug ) args.push("-debug");
+        if ( verbose ) args.push("-v");
+        
+        if ( args.length>0 ) 
+            println( 'Arguments: '+args.join(" ") );
+
+        for ( hxml in buildFiles ) {
+            if ( target!=null && hxml!='$target.hxml' ) continue;
+
+            foundBuilds++;
+            println ('Build $hxml');
+            
+            args.push( hxml );
+            if ( Sys.command("haxe", args) != 0 ) {
+                println ('Build failed\n');
+                exitCode = 1;
+            }
+            args.pop();
+        }
+
+        if ( target!=null && foundBuilds==0 ) { 
+            println('Build $target.hxml not found');
+            exitCode = 1;
+        }
+        exit(exitCode);
+    }
+}
+
+enum DCELevel {
+    no;
+    std;
+    full;
 }
