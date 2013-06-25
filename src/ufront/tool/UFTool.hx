@@ -5,6 +5,7 @@ import haxe.io.Path;
 import mcli.CommandLine;
 import mcli.Dispatch;
 import sys.FileSystem;
+import sys.io.File;
 import sys.net.Host;
 import Sys.*;
 using StringTools;
@@ -82,10 +83,8 @@ class UFTool extends CommandLine {
         Run an interactive shell (ihx) and import your key project files
         @alias i
     **/
-    public function shell() {
-        Sys.command("haxelib", ["run", "ihx"]);
-        println("Run an interactive shell");
-        exit(0);
+    public function shell( d:Dispatch ) {
+        d.dispatch(new ShellCommand());
     }
     
     /**
@@ -239,4 +238,65 @@ enum DCELevel {
     no;
     std;
     full;
+}
+
+/**
+    -------------------------------------------------------------------
+    Ufront Tool:
+      ufront shell
+    
+    Run an interactive shell (ihx), loading in all our source files and
+    required libraries.
+    -------------------------------------------------------------------
+
+    Usage:
+**/
+class ShellCommand extends UfrontCommand
+{
+    public function runDefault()
+    {
+        if ( 0 != new sys.io.Process("haxelib", ["path", "ihx"]).exitCode() ) {
+            println("ihx not installed, you can install it with:");
+            println("    haxelib git ihx https://github.com/jasononeil/ihx.git");
+            exit(1);
+        }
+
+        var args = ["run", "ihx"];
+        var libs = [];
+        var classPaths = [];
+        var defines = [];
+        var debug = false;
+        
+        var buildFiles = [ for ( f in FileSystem.readDirectory(getCwd()) ) if (f.endsWith(".hxml")) f ];
+        for ( hxml in buildFiles ) {
+            
+            var lines = File.getContent( hxml ).split( "\n" );
+
+            var isServerBuild = true;
+            for ( line in lines ) 
+                if ( line.startsWith("-D client") )
+                    isServerBuild = false;
+
+            if ( isServerBuild )
+                for ( line in lines ) {
+                    if ( line.startsWith("-cp ") ) 
+                        classPaths.push( line.split(" ")[1] );
+                    else if ( line.startsWith("-lib ") ) 
+                        libs.push( line.split(" ")[1] );
+                    else if ( line.startsWith("-D ") ) 
+                        defines.push( line.split(" ")[1] );
+                    else if ( line.startsWith("-debug ") ) 
+                        debug = true;
+                }
+
+        }
+
+        for ( c in classPaths ) args.push('-cp $c'); 
+        for ( l in libs ) args.push('-lib $l'); 
+        for ( d in defines ) args.push('-D $d'); 
+        if ( debug ) args.push("-debug");
+        
+        Sys.command("haxelib", args);
+        exit(0);
+    }
 }
