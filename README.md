@@ -33,7 +33,7 @@ You then have this usage:
 	                       localhost:2987  
 	i, shell               Run an interactive shell (ihx) and import your key 
 	                       project libraries and files  
-	-h, --help             Show this message
+	-h, --help             Show help message
 
 In future, I would like to add:
 
