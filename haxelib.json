@@ -5,8 +5,8 @@
   "tags": ["ufront","web","cli","shell","interactive","neko"],
   "description": "A command line tool to help you manage your ufront project.",
   "contributors": ["jason"],
-  "releasenote": "Another alpha release. `server`, `shell` and `build` commands now working in `haxelib run ufront` tool.",
-  "version": "1.0.0-alpha.2",
+  "releasenote": "Added run script",
+  "version": "1.0.0-alpha.5",
   "url": "https://github.com/ufront/ufront-uftool",
   "dependencies": {
     "ufront-mvc": "",
