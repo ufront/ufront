@@ -10,7 +10,6 @@
   "url": "https://github.com/ufront/ufront-uftool",
   "dependencies": {
     "ufront-mvc": "",
-    "ufront-remoting": "",
     "ufront-orm": "",
     "ufront-easyauth": "",
     "ufront-clientds": "",
