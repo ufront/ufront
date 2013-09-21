@@ -28,24 +28,24 @@ class UFTool extends CommandLine {
 		super();
 	}
 
-	/**
-		Create a new ufront project, controller, model, API or view based on a simple template.
-		@alias n
-	**/
-	public function create() {
-		println("setup a new project");
-		configure();
-		exit(0);
-	}
+	///**
+	//	Create a new ufront project, controller, model, API or view based on a simple template.
+	//	@alias n
+	//**/
+	//public function new() {
+	//	println("setup a new project");
+	//	configure();
+	//	exit(0);
+	//}
 
-	/**
-		Configure the current project's settings
-		@alias c
-	**/
-	public function configure() {
-		println("configure settings");
-		exit(0);
-	}
+	///**
+	//	Configure the current project's settings
+	//	@alias c
+	//**/
+	//public function configure() {
+	//	println("configure settings");
+	//	exit(0);
+	//}
 
 	/**
 		Build the current project
@@ -75,7 +75,7 @@ class UFTool extends CommandLine {
 		Run one of the tasks defined in your project.
 		@alias t
 	**/
-	public function runtask( d:Dispatch ) {
+	public function task( d:Dispatch ) {
 		d.dispatch(new TaskCommand());
 	}
 	
@@ -83,30 +83,52 @@ class UFTool extends CommandLine {
 		Run the unit tests for your app.
 		@alias u
 	**/
-	public function rununittests() {
-		println("Run the unit tests for your app");
-		exit(0);
+	public function unittest( d:Dispatch ) {
+		d.dispatch(new UnitTestCommand());
 	}
 	
-	/**
-		Watch your project using `livehaxe` and compile when changes are found.
-		@alias w
-	**/
-	public function watch() {
-		println("Watch and compile");
-		exit(0);
-	}
+	///**
+	//	Watch your project using `livehaxe` and compile when changes are found.
+	//	@alias w
+	//**/
+	//public function watch() {
+	//	println("Watch and compile");
+	//	exit(0);
+	//}
 
 	public function runDefault() {
 		help();
 	}
 
 	/**
-		Show this message.
-		@alias h
+		Show the help message.
 	**/
 	public function help() {
 		println(this.showUsage());
+		exit(0);
+	}
+
+	/**
+		Setup shortcuts so you can type `ufront` instead of `haxelib run ufront`.  May need to run with "sudo"
+	**/
+	public function setup() {
+		switch Sys.systemName() {
+			case "Windows":
+				println( "Sadly we haven't implemented this for windows yet.  If you would like to help please get in contact on Github" );
+				exit(1);
+			default:
+				var content = "#!/bin/sh\n\nhaxelib run ufront $@";
+				try {
+					sys.io.File.saveContent( "/usr/bin/ufront", content );
+					var exitCode = Sys.command( "chmod", "+x /usr/bin/ufront".split(" ") );
+					println( "Saved script to /usr/bin/ufront to redirect to `haxelib run ufront` ");
+					exit( exitCode );
+				}
+				catch ( e:Dynamic ) {
+					println( "Failed to save to `/usr/bin/ufront`.  Perhaps you need to run with `sudo`?" );
+					exit(1);
+				}
+		}
 		exit(0);
 	}
 
@@ -117,7 +139,11 @@ class UFTool extends CommandLine {
 		if ( calledFrom.file=="haxelib" || calledFrom.file=="ufront" ) {
 			setCwd( args.pop() );
 		} else {
-			println("We are making the assumption that you are running `neko run.n` from the ufront haxelib folder. Use `haxelib run ufront` to be sure.");
+			// Give a message to help understand haxelib's confusing behaviour.  
+			// If running "sudo haxelib run ufront --setup", don't complain.
+			if ( !(args.length>0 && args[0]=="--setup") ) {
+				println("We are making the assumption that you are running `neko run.n` from the ufront haxelib folder. Use `haxelib run ufront` to be sure.");
+			}
 		}
 		new mcli.Dispatch( args ).dispatch( new UFTool(ufrontDir) );
 	}
@@ -384,6 +410,34 @@ class TaskCommand extends UfrontCommand
 		}
 		else {
 			println('Failed to change into directory $dir');
+			exit(1);
+		}
+	}
+}
+
+/**
+	-------------------------------------------------------------------
+	Ufront Tool:
+	  ufront unittest
+	
+	Run the unit tests for this project, using the `munit` test library.
+
+	This is a shortcut for `haxelib run munit t`
+	-------------------------------------------------------------------
+
+	Usage:
+**/
+class UnitTestCommand extends UfrontCommand
+{
+	public function runDefault()
+	{
+		if ( sys.FileSystem.exists(".munit") ) {
+			var args = "run munit t".split(" ");
+			var exitCode = Sys.command( "haxelib", args );
+			exit( exitCode );
+		}
+		else {
+			println('No `.munit` file found.  Please run `haxelib run munit config` to set up test suite.');
 			exit(1);
 		}
 	}

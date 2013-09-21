@@ -11,20 +11,37 @@ Installing
 Installing from haxelib:
 
     haxelib install ufront
+    sudo haxelib run ufront --setup
 
 Using the latest git version:
 
     haxelib git ufront git@github.com:ufront/ufront.git <specific branch or tag, if not master>
+    sudo haxelib run ufront --setup
+
+Dependencies
+------------
+
+The `ufront` haxelib includes dependencies to:
+
+ - [ufront-mvc](https://github.com/ufront/ufront-mvc)
+ - [ufront-orm](https://github.com/ufront/ufront-orm)
+ - [ufront-easyauth](https://github.com/ufront/ufront-easyauth)
+ - [ufront-clientds](https://github.com/ufront/ufront-clientds)
+ - [ufront-ufadmin](https://github.com/ufront/ufront-ufadmin)
+ - [ufront-uftasks](https://github.com/ufront/ufront-uftasks)
+ - [mcli](https://github.com/waneck/mcli)
+ - [compiletime](https://github.com/jasononeil/compiletime)
+
+as well as other libraries which these are dependent on, such as [thx](https://github.com/fponticelli/thx) and [hxevents](https://github.com/ufront/hxevents).
 
 Using the ufront tool
 ---------------------
 
     haxelib run ufront
 
-On Mac/Linux, you can make life easier by aliasing "haxelib run ufront" to simple "ufront", by create a shell script like this, and saving it to `/usr/bin/ufront/`:
+Or, if you ran the `--setup` command:
 
-	#!/bin/sh
-	haxelib run ufront $@
+    ufront
 
 You then have this usage:
 
@@ -33,6 +50,8 @@ You then have this usage:
 	                       localhost:2987  
 	i, shell               Run an interactive shell (ihx) and import your key 
 	                       project libraries and files  
+	t, task                Run one of the tasks defined in your project
+	u, unittests           Run the unit tests for your app
 	-h, --help             Show help message
 
 In future, I would like to add:
@@ -40,9 +59,7 @@ In future, I would like to add:
 	n, create              Create a new ufront project, controller, model, API 
 	                       or view based on simple templates
 	c, configure           Configure the current project's settings 
-	t, runtask             Run one of the tasks defined in your project
 	d, documentation       Regenerate the documentation for your project
-	u, rununittests        Run the unit tests for your app
 	w, watch               Watch your project using `livehaxe` and compile when 
 	                       changes are found
 
