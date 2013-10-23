@@ -1,5 +1,5 @@
--cp src
 -main ufront.tool.UFTool
 -neko run.n
 -lib mcli
 -lib compiletime
+-cp src
