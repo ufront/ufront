@@ -114,8 +114,23 @@ class UFTool extends CommandLine {
 	public function setup() {
 		switch Sys.systemName() {
 			case "Windows":
-				println( "Sadly we haven't implemented this for windows yet.  If you would like to help please get in contact on Github" );
-				exit(1);
+				var content = "@haxelib run ufront %*";
+				try {
+					var path = Sys.getEnv("HAXEPATH");
+					if (path == null || path.length == 0) {
+						throw "HAXEPATH environment variable not found.";
+					}
+					sys.io.File.saveContent( '$path/ufront.bat', content );
+					println( 'Saved script to $path/ufront.bat\n`ufront` is now redirected to `haxelib run ufront`');
+					exit(0);
+				}
+				catch ( e:Dynamic ) {
+					println( 'Error: $e' );
+					println( "Failed to save to `%HAXEPATH%/ufront.bat`." );
+					println( "You can manually add ufront.bat to any folder in your PATH" );
+					println( '  contents of the file: $content' );
+					exit(1);
+				}
 			default:
 				var content = "#!/bin/sh\n\nhaxelib run ufront $@";
 				try {
@@ -136,7 +151,7 @@ class UFTool extends CommandLine {
 		var args = args();
 		var calledFrom = new Path( executablePath() );
 		var ufrontDir = getCwd();
-		if ( calledFrom.file=="haxelib" || calledFrom.file=="ufront" ) {
+		if ( calledFrom.file=="haxelib" || calledFrom.file=="ufront" || Sys.systemName()=="Windows" ) {
 			setCwd( args.pop() );
 		} else {
 			// Give a message to help understand haxelib's confusing behaviour.  
