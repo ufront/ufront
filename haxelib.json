@@ -5,8 +5,8 @@
   "tags": ["ufront","web","cli","shell","interactive","neko"],
   "description": "A command line tool to help you manage your ufront project.",
   "contributors": ["jason"],
-  "releasenote": "Update for compatibility with ufront-mvc 1.0.0-beta.1.  Better tooling support.",
-  "version": "1.0.0-beta.1",
+  "releasenote": "Update for compatibility with ufront-mvc 1.0.0-beta.3.",
+  "version": "1.0.0-beta.2",
   "url": "https://github.com/ufront/ufront-uftool",
   "dependencies": {
     "ufront-mvc": "",
