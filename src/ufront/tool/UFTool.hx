@@ -281,7 +281,7 @@ class ShellCommand extends UfrontCommand
 	{
 		if ( 0 != new sys.io.Process("haxelib", ["path", "ihx"]).exitCode() ) {
 			println("ihx not installed, you can install it with:");
-			println("    haxelib git ihx https://github.com/jasononeil/ihx.git");
+			println("    haxelib install ihx");
 			exit(1);
 		}
 
