@@ -332,9 +332,9 @@ class ShellCommand extends UfrontCommand
 
 		}
 
-		for ( c in classPaths ) args.push('-cp $c'); 
-		for ( l in libs ) args.push('-lib $l'); 
-		for ( d in defines ) args.push('-D $d'); 
+		for ( c in classPaths ) { args.push( '-cp' ); args.push( c ); }
+		for ( l in libs ) { args.push( '-lib' ); args.push( l ); }
+		for ( d in defines ) { args.push( '-D' ); args.push( d ); }
 		if ( debug ) args.push("-debug");
 		
 		Sys.command("haxelib", args);
