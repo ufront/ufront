@@ -8,7 +8,8 @@ using StringTools;
 /**
 	-------------------------------------------------------------------
 	Ufront Tool:
-	  ufront build
+	- ufront build
+	- ufront build {target hxml}
 	
 	Builds one or all of your project hxml files.  
 	-------------------------------------------------------------------

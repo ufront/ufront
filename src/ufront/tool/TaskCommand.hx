@@ -7,7 +7,7 @@ import Sys.*;
 /**
 	-------------------------------------------------------------------
 	Ufront Tool:
-	  ufront task
+	- ufront task
 	
 	Run a task.  This is a shortcut for `cd out; neko tasks.n`
 	-------------------------------------------------------------------

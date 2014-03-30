@@ -6,7 +6,7 @@ import Sys.*;
 /**
 	-------------------------------------------------------------------
 	Ufront Tool:
-	  ufront unittest
+	- ufront unittest
 	
 	Run the unit tests for this project, using the `munit` test library.
 

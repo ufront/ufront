@@ -9,7 +9,7 @@ using StringTools;
 /**
 	-------------------------------------------------------------------
 	Ufront Tool:
-	  ufront server
+	- ufront server
 	
 	Run a local development server (using `nekotools server`).
 	-------------------------------------------------------------------

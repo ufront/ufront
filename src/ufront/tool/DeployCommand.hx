@@ -11,7 +11,9 @@ using StringTools;
 /**
 	-------------------------------------------------------------------
 	Ufront Tool:
-	  ufront deploy
+	- ufront deploy
+	- ufront {target}
+	- ufront {target} {server}
 	
 	TODO: document what this is and how it works, probably with a link
 
