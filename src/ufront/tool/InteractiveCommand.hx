@@ -10,7 +10,7 @@ using StringTools;
 /**
 	-------------------------------------------------------------------
 	Ufront Tool:
-	  ufront shell
+	- ufront interactive
 	
 	Run an interactive shell (ihx), loading in all our source files and
 	required libraries.
@@ -18,7 +18,7 @@ using StringTools;
 
 	Usage:
 **/
-class ShellCommand extends UfrontCommand
+class InteractiveCommand extends UfrontCommand
 {
 	public function runDefault()
 	{

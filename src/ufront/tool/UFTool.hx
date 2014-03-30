@@ -58,8 +58,8 @@ class UFTool extends CommandLine {
 		Run an interactive shell (ihx) and import your key project files
 		@alias i
 	**/
-	public function shell( d:Dispatch ) {
-		d.dispatch(new ShellCommand());
+	public function interactive( d:Dispatch ) {
+		d.dispatch(new InteractiveCommand());
 	}
 	
 	/**
