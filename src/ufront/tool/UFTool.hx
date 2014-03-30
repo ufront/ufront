@@ -33,17 +33,9 @@ class UFTool extends CommandLine {
 	//	Create a new ufront project, controller, model, API or view based on a simple template.
 	//	@alias n
 	//**/
-	//public function new() {
+	//public function create() {
 	//	println("setup a new project");
 	//	configure();
-	//}
-
-	///**
-	//	Configure the current project's settings
-	//	@alias c
-	//**/
-	//public function configure() {
-	//	println("configure settings");
 	//}
 
 	/**
