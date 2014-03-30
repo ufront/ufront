@@ -105,6 +105,7 @@ class UFTool extends CommandLine {
 	**/
 	public function help() {
 		println(this.showUsage());
+		exit( 0 );
 	}
 
 	/**
@@ -148,22 +149,31 @@ class UFTool extends CommandLine {
 	public static function main() {
 		var args = Sys.args();
 
-		var firstArg = args.pop();
+		var finalArg = args.pop();
 		var ufrontDir:String;
-		if ( firstArg!=null && FileSystem.exists(firstArg.addTrailingSlash()+"run.n") ) {
+		if ( finalArg!=null && FileSystem.exists("run.n") ) {
 			// Haxelib is weird.  
 			// If this is called via "haxelib run ufront" (or "ufront" which as an alias for "haxelib run ufront"), then Haxe will:
 			//  - Change the cwd to the ufront haxelib folder
-			//  - Pass the users working directory as the first argument.
+			//  - Pass the users working directory as the final argument.
 			// So if the '${args[0]}/run.n' exists, we assume haxelib is in this weird state, and undo it's behaviour.
 			// We change the cwd back to the user's original directory, and take it out of the args.
 			// We hold on to the ufrontDir just in case.
 			ufrontDir = getCwd();
-			setCwd( firstArg );
+			try {
+				setCwd( finalArg );
+			}
+			catch ( e:Dynamic ) {
+				// Further confusion, if the user is in the "ufront" src directory, and runs for example "neko run.n --help", we'll try to change into the "--help" directory.
+				// If we fail to change into a dir, assume the final argument was not the users folder after all, and push it back.
+				args.push( finalArg );
+			}
 		}
 		else {
-			// Probably not weird haxelib behaviour.  Get ufrontDir by using 'haxelib path', reading the first line, and trimming the '/src/' from the end.
-			if ( firstArg!=null ) args.unshift( firstArg );
+			// Probably not weird haxelib behaviour.  
+			// Get ufrontDir by using 'haxelib path', reading the first line, and trimming the '/src/' from the end.
+			// And put the finalArg back in it's place.
+			if ( finalArg!=null ) args.push( finalArg );
 
 			var pathInfo = SysUtil.getCommandOutput( "haxelib", ["path","ufront"] );
 			ufrontDir = pathInfo.split("\n")[0];
@@ -172,7 +182,6 @@ class UFTool extends CommandLine {
 				ufrontDir = ufrontDir.substr( 0, ufrontDir.length-4 );
 			}
 		}
-		trace( 'Ufrontdir: $ufrontDir' );
 		new mcli.Dispatch( args ).dispatch( new UFTool(ufrontDir) );
 	}
 }
