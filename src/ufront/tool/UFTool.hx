@@ -146,18 +146,33 @@ class UFTool extends CommandLine {
 	}
 
 	public static function main() {
-		var args = args();
-		var calledFrom = new Path( executablePath() );
-		var ufrontDir = getCwd();
-		if ( calledFrom.file=="haxelib" || calledFrom.file=="ufront" || Sys.systemName()=="Windows" ) {
-			setCwd( args.pop() );
-		} else {
-			// Give a message to help understand haxelib's confusing behaviour.  
-			// If running "sudo haxelib run ufront --setup", don't complain.
-			if ( !(args.length>0 && args[0]=="--setup") ) {
-				println("We are making the assumption that you are running `neko run.n` from the ufront haxelib folder. Use `haxelib run ufront` to be sure.");
+		var args = Sys.args();
+
+		var firstArg = args.pop();
+		var ufrontDir:String;
+		if ( firstArg!=null && FileSystem.exists(firstArg.addTrailingSlash()+"run.n") ) {
+			// Haxelib is weird.  
+			// If this is called via "haxelib run ufront" (or "ufront" which as an alias for "haxelib run ufront"), then Haxe will:
+			//  - Change the cwd to the ufront haxelib folder
+			//  - Pass the users working directory as the first argument.
+			// So if the '${args[0]}/run.n' exists, we assume haxelib is in this weird state, and undo it's behaviour.
+			// We change the cwd back to the user's original directory, and take it out of the args.
+			// We hold on to the ufrontDir just in case.
+			ufrontDir = getCwd();
+			setCwd( firstArg );
+		}
+		else {
+			// Probably not weird haxelib behaviour.  Get ufrontDir by using 'haxelib path', reading the first line, and trimming the '/src/' from the end.
+			if ( firstArg!=null ) args.unshift( firstArg );
+
+			var pathInfo = SysUtil.getCommandOutput( "haxelib", ["path","ufront"] );
+			ufrontDir = pathInfo.split("\n")[0];
+
+			if ( ufrontDir.endsWith("/src/") ) {
+				ufrontDir = ufrontDir.substr( 0, ufrontDir.length-4 );
 			}
 		}
+		trace( 'Ufrontdir: $ufrontDir' );
 		new mcli.Dispatch( args ).dispatch( new UFTool(ufrontDir) );
 	}
 }
