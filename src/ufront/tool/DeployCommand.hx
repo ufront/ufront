@@ -134,8 +134,11 @@ class DeployCommand extends UfrontCommand
 			setCwd( deployDir );
 			if ( 0!=Sys.command('git', ["add","."]) )
 				throw "Failed to add files to git repo";
-			if ( 0!=Sys.command('git', ["commit","-am",'Deploy for ${target.name} from commit ${currentcommit}']) )
-				throw "Failed to commit changes to git repo";
+			if ( 0!=Sys.command('git', ["diff"]) ) {
+				// There are changes, so commit them.
+				if ( 0!=Sys.command('git', ["commit","-am",'Deploy for ${target.name} from commit ${currentcommit}']) )
+					throw "Failed to commit changes to git repo";
+			}
 			if ( 0!=Sys.command('git', ["push","origin","master"]) )
 				throw "Failed to push to remote git repo.";
 			setCwd( projectDir );
