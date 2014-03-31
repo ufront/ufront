@@ -115,26 +115,14 @@ class DeployCommand extends UfrontCommand
 			// Copy
 			runCommands( deployConfig.hooks.beforeCopy, "beforeCopy" );
 			step( 'Copy files to deployment directory' );
-			for ( targetDir in Reflect.fields(deployConfig.files) ) {
-				var filesToCopy:Array<String> = Reflect.field( deployConfig.files, targetDir );
+			for ( file in deployConfig.files ) {
+				if ( file.startsWith("/") ) 
+					file = file.substr(1);
+				
+				var filePath = '$projectDir/out/$file';
+				var deployFilePath = '$deployDir/$file';
 
-				if (targetDir.startsWith("/")==false) targetDir = '/$targetDir';
-				var deployTarget = targetDir.startsWith("/") ? deployDir+targetDir : deployDir+"/"+targetDir;
-				deployTarget.addTrailingSlash();
-
-				for ( file in filesToCopy ) {
-					if ( file.startsWith("/") ) file.substr(1);
-
-					if ( FileSystem.isDirectory(file) ) {
-						// If it ends with a slash, copy the files inside to the target directory
-						SysUtil.recursiveCopy( file, deployTarget );
-					}
-					else {
-						// If it is a file, copy this to the target directory
-						var filename = file.withoutDirectory();
-						SysUtil.recursiveCopy( file, deployTarget+filename );
-					}
-				}
+				SysUtil.recursiveCopy( filePath, deployFilePath );
 			}
 			runCommands( deployConfig.hooks.afterCopy, "afterCopy" );
 
@@ -241,8 +229,16 @@ class DeployCommand extends UfrontCommand
 }
 
 typedef DeployConfig = {
-	/** Files to include in the deployment **/
-	files: Dynamic<Array<String>>,
+	/**
+		Files to include in the deployment.
+
+		They will be copied from `out/*` to the deployment directory.
+
+		If one of the files is a directory, it will be copied recursively.
+
+		If it is null or empty, the entire contents of "out" will be copied.
+	**/
+	files: Array<String>,
 
 	/** Build targets and  **/
 	targets:Array<DeployTarget>,

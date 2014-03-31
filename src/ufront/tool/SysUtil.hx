@@ -1,5 +1,6 @@
 package ufront.tool;
 
+import haxe.io.Bytes;
 import sys.FileSystem;
 import sys.io.Process;
 import Sys.*;
@@ -46,7 +47,17 @@ class SysUtil {
 			}
 		}
 		else {
-			File.saveBytes( outFile, File.getBytes(inFile) );
+			var copy = true;
+			if ( FileSystem.exists(outFile) ) {
+
+				if ( areFilesDifferent(inFile, outFile)==false ) {
+					copy = false;
+				}
+			}
+			if (copy) {
+				println( 'Copying asset $inFile' );
+				File.saveBytes( outFile, File.getBytes(inFile) );
+			}
 		}
 	}
 
@@ -66,5 +77,51 @@ class SysUtil {
 			default: 
 				return throw 'Command `$cmd ${args.join(" ")}` failed. \nExit code: $code\nStdout: $stdout\nStderr: $stderr';
 		}
+	}
+
+	/**
+		Check if 2 files are different.  
+
+		Assumes both files exist.
+
+		Will compare file sizes, and if they are identical, will compare the bytes of the files to see if they are different.
+	**/
+	public static function areFilesDifferent( file1:String, file2:String ):Bool {
+
+		var file1Stat = FileSystem.stat( file1 );
+		var file2Stat = FileSystem.stat( file2 );
+
+		if ( file1Stat.size!=file2Stat.size ) {
+			trace( 'For $file1, different size' );
+			return true;
+		}
+		else {
+			// Copy only if the file is different.  We'll use Adler32 to compare them.
+			var input1 = File.read(file1);
+			var input2 = File.read(file2);
+
+			var fileSize = file1Stat.size; // Same for both files.
+			var chunkSize = 1024;
+			var amountRead = 0;
+			var differenceFound = false;
+
+			while ( amountRead < file1Stat.size ) {
+				var amount = file1Stat.size - amountRead;
+				if ( amount>chunkSize ) amount = chunkSize;
+
+				amountRead += amount;
+				var bytes1 = input1.read( amount );
+				var bytes2 = input2.read( amount );
+
+				if ( bytes1.compare(bytes2)!=0 ) {
+					differenceFound = true;
+				}
+			}
+
+			input1.close();
+			input2.close();
+			return differenceFound;
+		}
+
 	}
 }
