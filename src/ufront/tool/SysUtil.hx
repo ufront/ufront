@@ -92,7 +92,6 @@ class SysUtil {
 		var file2Stat = FileSystem.stat( file2 );
 
 		if ( file1Stat.size!=file2Stat.size ) {
-			trace( 'For $file1, different size' );
 			return true;
 		}
 		else {
