@@ -119,7 +119,7 @@ class DeployCommand extends UfrontCommand
 				if ( file.startsWith("/") ) 
 					file = file.substr(1);
 				
-				var filePath = '$projectDir/out/$file';
+				var filePath = '$projectDir/www/$file';
 				var deployFilePath = '$deployDir/$file';
 
 				SysUtil.recursiveCopy( filePath, deployFilePath );
@@ -233,11 +233,11 @@ typedef DeployConfig = {
 	/**
 		Files to include in the deployment.
 
-		They will be copied from `out/*` to the deployment directory.
+		They will be copied from `www/*` to the deployment directory.
 
 		If one of the files is a directory, it will be copied recursively.
 
-		If it is null or empty, the entire contents of "out" will be copied.
+		If it is null or empty, the entire contents of "www" will be copied.
 	**/
 	files: Array<String>,
 

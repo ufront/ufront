@@ -24,9 +24,9 @@ class ServerCommand extends UfrontCommand
 	public var port:Int = 2987;
 	
 	/** 
-		The directory to launch the server in.  "Out" by default.
+		The directory to launch the server in.  "www" by default.
 	**/
-	public var dir:String = "out";
+	public var dir:String = "www";
 	
 	/** 
 		Server name to listen on.  Can be an IP address.  Will be the value of `Host.localhost().toString()` by default.

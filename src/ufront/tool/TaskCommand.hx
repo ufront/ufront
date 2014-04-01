@@ -9,7 +9,7 @@ import Sys.*;
 	Ufront Tool:
 	- ufront task
 	
-	Run a task.  This is a shortcut for `cd out; neko tasks.n`
+	Run a task.  This is a shortcut for `cd www; neko tasks.n`
 	-------------------------------------------------------------------
 
 	Usage:
@@ -17,9 +17,9 @@ import Sys.*;
 class TaskCommand extends UfrontCommand
 {
 	/** 
-		The directory to launch the server in.  "Out" by default.
+		The directory to launch the server in.  "www" by default.
 	**/
-	public var dir:String = "out";
+	public var dir:String = "www";
 	
 	/** 
 		Name of the task file to run
