@@ -160,8 +160,8 @@ class DeployCommand extends UfrontCommand
 				// The repo does not exist, create the parent directory, and clone into it.
 				step( 'Create directory on deployment server' );
 				var remoteDir = server.remoteDir.removeTrailingSlashes();
-				var parentDir = server.remoteDir.directory();
-				var repoFolderName = server.remoteDir.withoutDirectory();
+				var parentDir = remoteDir.directory();
+				var repoFolderName = remoteDir.withoutDirectory();
 				runRemoteCommand( server, 'mkdir -p $parentDir', false );
 				runRemoteCommand( server, 'cd $parentDir && git clone ${target.gitRepo} $repoFolderName', false );
 			}
