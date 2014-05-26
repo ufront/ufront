@@ -16,20 +16,30 @@ import Sys.*;
 **/
 class TaskCommand extends UfrontCommand
 {
+	/**
+		Leftover args to be parsed in here...
+	**/
+	var args:Array<String>;
+
 	/** 
 		The directory to launch the server in.  "www" by default.
 	**/
-	public var dir:String = "www";
+	var dir:String = "www";
 	
 	/** 
 		Name of the task file to run
 	**/
-	public var file:String = "tasks.n";
+	var file:String = "tasks.n";
 
-	public function runDefault( d:Dispatch )
-	{
+	public function new( args:Array<String> ) {
+		super();
+		this.args = args;
+	}
+
+	public function runDefault( d:Dispatch ) {
 		var args = d.args.copy();
 		args.reverse();
+
 		if ( FileSystem.exists(dir) ) {
 			var originalCwd = getCwd();
 			setCwd( dir );

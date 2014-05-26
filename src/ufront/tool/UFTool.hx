@@ -68,7 +68,7 @@ class UFTool extends CommandLine {
 		@alias t
 	**/
 	public function task( d:Dispatch ) {
-		d.dispatch(new TaskCommand());
+		d.dispatch(new TaskCommand(d.args));
 	}
 	
 	/**
@@ -154,7 +154,7 @@ class UFTool extends CommandLine {
 		var ufrontDir:String;
 		if ( finalArg!=null && FileSystem.exists("run.n") ) {
 			// Haxelib is weird.  
-			// If this is called via "haxelib run ufront" (or "ufront" which as an alias for "haxelib run ufront"), then Haxe will:
+			// If this is called via "haxelib run ufront" (or "ufront" which as an alias for "haxelib run ufront"), then Haxelib will:
 			//  - Change the cwd to the ufront haxelib folder
 			//  - Pass the users working directory as the final argument.
 			// So if the '${args[0]}/run.n' exists, we assume haxelib is in this weird state, and undo it's behaviour.
@@ -179,6 +179,7 @@ class UFTool extends CommandLine {
 			var pathInfo = SysUtil.getCommandOutput( "haxelib", ["path","ufront"] );
 			ufrontDir = pathInfo.split("\n")[0];
 
+			// TODO: find a better way to navigate our way to the top of the Ufront Directory
 			if ( ufrontDir.endsWith("/src/") ) {
 				ufrontDir = ufrontDir.substr( 0, ufrontDir.length-4 );
 			}
