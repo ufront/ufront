@@ -5,7 +5,7 @@
   "tags": ["ufront","web","cli","shell","interactive","neko"],
   "description": "Ufront is a client/server web framework written in Haxe.  This library contains links to common ufront libraries, and a command line tool to help you manage your ufront project.",
   "contributors": ["jason"],
-  "releasenote": "Improved command line tool, now supports at least one deployment strategy.",
+  "releasenote": "Improved command line tool, now supports a git based deployment strategy.",
   "version": "1.0.0-beta.3",
   "url": "https://github.com/ufront/ufront-uftool",
   "dependencies": {
