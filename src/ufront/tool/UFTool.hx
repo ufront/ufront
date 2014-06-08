@@ -68,7 +68,7 @@ class UFTool extends CommandLine {
 		@alias t
 	**/
 	public function task( d:Dispatch ) {
-		d.dispatch(new TaskCommand(d.args));
+		// This is actually implemented below in main(), we just leave the method here so that documentation is generated.
 	}
 	
 	/**
@@ -184,7 +184,16 @@ class UFTool extends CommandLine {
 				ufrontDir = ufrontDir.substr( 0, ufrontDir.length-4 );
 			}
 		}
-		new mcli.Dispatch( args ).dispatch( new UFTool(ufrontDir) );
+
+		// Because we use MCLI to process args here, it can sometimes swallow them and break "ufront tasks --some --args for tasks"
+		// So what we'll do is capture "t" and "task" arguments now and dispatch them directly.
+		if ( args[0]=="t" || args[0]=="task" ) {
+			args.shift();
+			TaskCommand.run(args);
+		}
+		else {
+			new mcli.Dispatch( args ).dispatch( new UFTool(ufrontDir) );
+		}
 	}
 }
 				

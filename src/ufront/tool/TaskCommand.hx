@@ -14,37 +14,14 @@ import Sys.*;
 
 	Usage:
 **/
-class TaskCommand extends UfrontCommand
+class TaskCommand
 {
-	/**
-		Leftover args to be parsed in here...
-	**/
-	var args:Array<String>;
-
-	/** 
-		The directory to launch the server in.  "www" by default.
-	**/
-	var dir:String = "www";
-	
-	/** 
-		Name of the task file to run
-	**/
-	var file:String = "tasks.n";
-
-	public function new( args:Array<String> ) {
-		super();
-		this.args = args;
-	}
-
-	public function runDefault( d:Dispatch ) {
-		var args = d.args.copy();
-		args.reverse();
-
-		if ( FileSystem.exists(dir) ) {
+	public static function run( args:Array<String> ) {
+		if ( FileSystem.exists("www") ) {
 			var originalCwd = getCwd();
-			setCwd( dir );
+			setCwd( "www" );
 
-			var nekoArgs = [file];
+			var nekoArgs = ["tasks.n"];
 			for ( arg in args ) nekoArgs.push( arg );
 			var exitCode = Sys.command( "neko", nekoArgs );
 			
@@ -52,7 +29,7 @@ class TaskCommand extends UfrontCommand
 			exit( exitCode );
 		}
 		else {
-			println('Failed to change into directory $dir');
+			println('Failed to change into directory "www"');
 			exit(1);
 		}
 	}
