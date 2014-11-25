@@ -6,14 +6,14 @@
   "description": "Ufront is a client/server web framework written in Haxe.  This library contains links to common ufront libraries, and a command line tool to help you manage your ufront project.",
   "contributors": ["jason"],
   "releasenote": "Version bumps.",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.4",
   "url": "https://github.com/ufront/ufront",
   "dependencies": {
     "ufront-mvc": "1.0.0-rc.6",
     "ufront-orm": "1.0.0-rc.6",
-    "ufront-easyauth": "1.0.0-rc.4",
+    "ufront-easyauth": "1.0.0-rc.5",
     "ufront-ufadmin": "1.0.0-beta.7",
-    "ufront-uftasks": "1.0.0-beta.7",
+    "ufront-uftasks": "1.0.0-beta.8",
     "compiletime": "2.5.1"
   }
 }
