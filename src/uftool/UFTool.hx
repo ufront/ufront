@@ -1,4 +1,4 @@
-package ufront.tool;
+package uftool;
 
 import haxe.ds.StringMap;
 import haxe.Json;

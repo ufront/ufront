@@ -1,4 +1,4 @@
-package ufront.tool;
+package uftool;
 
 import mcli.CommandLine;
 

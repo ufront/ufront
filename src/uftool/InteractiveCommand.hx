@@ -1,4 +1,4 @@
-package ufront.tool;
+package uftool;
 
 import haxe.Json;
 import sys.FileSystem;

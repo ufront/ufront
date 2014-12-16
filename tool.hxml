@@ -1,4 +1,4 @@
--main ufront.tool.UFTool
+-main uftool.UFTool
 -neko run.n
 -lib mcli
 -lib compiletime
