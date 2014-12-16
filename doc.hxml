@@ -1,0 +1,22 @@
+-main ImportAll
+-lib ufront
+-cp doc/src
+--no-output
+--each
+
+# Neko
+-D server
+-neko doc/neko.n
+-xml doc/neko.xml
+
+# PHP
+--next
+-D server
+-php doc/php/
+-xml doc/php.xml
+
+# JS (Client)
+--next
+-D client
+-js doc/client.js
+-xml doc/js-client.xml

@@ -1,1 +1,3 @@
 *.zip
+doc/api
+doc/*.xml

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+rm -Rf doc/api/*
+mkdir -p doc/api/
+
+cd doc/
+haxelib run dox -i . -o api/ --title "Ufront API Docs" -in . -ex Test$
+nekotools server -p 2001
+
