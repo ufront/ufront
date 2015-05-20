@@ -1,6 +1,8 @@
 ufront
 ======
 
+[![Join the chat at https://gitter.im/ufront/ufront](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ufront/ufront?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Ufront is a powerful MVC web framework for Haxe. It gives you quick development, shared code on the client and server, powerful extensibility, easy testing, and targets PHP or Neko on the server, and mostly JS (though anything is possible) on the client.  A NodeJS target would be very feasible, and may be included in the future.
 
 This is the mothership repo - most of the actual code is contained in the other ufront repos, such as ufront-mvc.
