@@ -1,11 +1,12 @@
 -main ImportAll
--lib ufront
 -lib mockatoo
--cp doc/src
+-lib utest
 --no-output
 --each
 
 # Neko
+-lib ufront
+-cp doc/src
 -D server
 -neko doc/neko.n
 -xml doc/neko.xml
@@ -13,11 +14,14 @@
 # PHP
 --next
 -D server
+-lib ufront
+-cp doc/src
 -php doc/php/
 -xml doc/php.xml
 
 # JS (Client)
 --next
--D client
+-lib ufront-client
+-cp doc/src
 -js doc/client.js
 -xml doc/js-client.xml

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+function stop {
+	PROGNAME=$(basename $0)
+	echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
+	exit 1
+}
+
+neko submodules/ufront-mvc/build/neko_test.n || stop "Neko tests failed"
+php submodules/ufront-mvc/build/php_test.php || stop "PHP tests failed"

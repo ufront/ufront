@@ -4,5 +4,5 @@ rm -Rf doc/api/*
 mkdir -p doc/api/
 
 cd doc/
-haxelib run dox -i . -o api/ --title "Ufront API Docs" -in . -ex Test$
+haxelib run dox -i . -o api/ --title "UfrontAPIDocs" -in . -ex Test$ -t ufront-api/templates/ -res ufront-api/resources/
 nekotools server -p 2001
