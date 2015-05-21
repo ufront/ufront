@@ -1,25 +1,25 @@
 [submodule "submodules/ufront-mvc"]
 	path = submodules/ufront-mvc
-	url = git@github.com:ufront/ufront-mvc.git
+	url = https://github.com/ufront/ufront-mvc.git
 [submodule "submodules/ufront-orm"]
 	path = submodules/ufront-orm
-	url = git@github.com:ufront/ufront-orm.git
+	url = https://github.com/ufront/ufront-orm.git
 [submodule "submodules/ufront-easyauth"]
 	path = submodules/ufront-easyauth
-	url = git@github.com:ufront/ufront-easyauth.git
+	url = https://github.com/ufront/ufront-easyauth.git
 [submodule "submodules/ufront-ufadmin"]
 	path = submodules/ufront-ufadmin
-	url = git@github.com:ufront/ufront-ufadmin.git
+	url = https://github.com/ufront/ufront-ufadmin.git
 [submodule "submodules/ufront-uftasks"]
 	path = submodules/ufront-uftasks
-	url = git@github.com:ufront/ufront-uftasks.git
+	url = https://github.com/ufront/ufront-uftasks.git
 [submodule "submodules/ufront-client"]
 	path = submodules/ufront-client
-	url = git@github.com:ufront/ufront-client.git
+	url = https://github.com/ufront/ufront-client.git
 [submodule "submodules/minject"]
 	path = submodules/minject
 	url = https://github.com/massiveinteractive/minject.git
 	branch = v2
 [submodule "submodules/ufront-mail"]
 	path = submodules/ufront-mail
-	url = git@github.com:ufront/ufront-mail.git
+	url = https://github.com/ufront/ufront-mail.git
