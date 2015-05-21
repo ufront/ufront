@@ -23,3 +23,6 @@
 [submodule "submodules/ufront-mail"]
 	path = submodules/ufront-mail
 	url = git@github.com:ufront/ufront-mail.git
+[submodule "submodules/hello"]
+	path = submodules/hello
+	url = https://github.com/ufront/hello.git
