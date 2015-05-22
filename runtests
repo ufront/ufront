@@ -1,10 +1,24 @@
 #!/bin/bash
 
+# Must have environment variables set for MYSQL connection in ufront-orm tests.
+# eg. MYSQL_HOST="localhost" MYSQL_PORT="3306" MYSQL_USER="ufrontormtest" MYSQL_PASSWORD="ufrontormtest" MYSQL_DATABASE="ufrontormtest"  ./runtests
+
 function stop {
 	PROGNAME=$(basename $0)
 	echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
 	exit 1
 }
 
-neko submodules/ufront-mvc/build/neko_test.n || stop "Neko tests failed"
-php submodules/ufront-mvc/build/php_test.php || stop "PHP tests failed"
+# Ufront-mvc tests.
+cd submodules/ufront-mvc/
+haxe test.hxml || stop "Failed to compile ufront-mvc tests"
+neko build/neko_test.n || stop "ufront-mvc tests failed on Neko"
+php build/php_test.php || stop "ufront-mvc tests failed on PHP"
+cd ../../
+
+# Ufront-orm tests.
+cd submodules/ufront-orm
+./testAll.sh || stop "ufront-orm tests failed"
+cd ../../
+
+
