@@ -9,6 +9,14 @@ function stop {
 	exit 1
 }
 
+# Compile our docs.
+haxe doc.hxml || stop "Failed to compile API documentation"
+rm -Rf doc/api/*
+mkdir -p doc/api/
+cd doc/
+haxelib run dox -i . -o api/ --title "Ufront-API-Docs" -in . -ex Test$ -t ufront-api/templates/ -res ufront-api/resources/ || stop "Failed to proces API docs"
+cd ../
+
 # Ufront-mvc tests.
 cd submodules/ufront-mvc/
 haxe test.hxml || stop "Failed to compile ufront-mvc tests"
@@ -21,4 +29,7 @@ cd submodules/ufront-orm
 ./testAll.sh || stop "ufront-orm tests failed"
 cd ../../
 
-
+# Compile ufront-hello
+cd submodules/hello
+ufront b || stop "Failed to compile hello world example"
+cd ../../
