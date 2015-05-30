@@ -1,20 +1,26 @@
 ::use 'main.mtt'::
-	::if full == ""::
-		<h1>Haxe API documentation <small ::cond api.isDefined("version")::>version ::api.getValue('version')::</small></h1>
-		<p>Haxe is an open source toolkit based on a modern, high level, strictly typed programming language, a cross-compiler, a complete cross-platform standard library and ways to access each platform's native capabilities.</p> 
-		<h3>Getting Started With Haxe</h3>
-		<p>For getting started with Haxe, take a look at our <a href="http://haxe.org/documentation/introduction/">introduction</a>, read through the <a href="http://haxe.org/manual/">Haxe Manual</a> or look at these use cases for Haxe, including tutorials and popular libraries:</p>
+	::if full == "ufront"::
+		<h1>Ufront API Documentation <small ::cond api.isDefined("version")::>version ::api.getValue('version')::</small></h1>
+		<p>Ufront is an open source client-server web framework for Haxe.</p>
+		<p>Here are links to some of the common classes you may be interested in:</p>
 		<ul>
-			<li><a href="http://haxe.org/use-cases/games/">Games</a></li>
-			<li><a href="http://haxe.org/use-cases/web/">Web</a></li>
-			<li><a href="http://haxe.org/use-cases/desktop/">Desktop Apps</a></li>
-			<li><a href="http://haxe.org/use-cases/mobile/">Mobile Apps</a></li>
-			<li><a href="http://haxe.org/use-cases/cli/">Command Line Tools</a></li>
-			<li><a href="http://haxe.org/use-cases/cross-platform-apis/">Cross Platform APIs</a></li>
+			<li><a href="/ufront/app/UfrontApplication.html">ufront.app.UfrontApplication</a></li>
+			<li><a href="/ufront/api/UFApi.html">ufront.api.UFApi</a></li>
+			<li><a href="/ufront/web/Controller.html">ufront.web.Controller</a></li>
+			<li><a href="/ufront/db/Object.html">ufront.db.Object</a></li>
+			<li><a href="/ufront/web/result/ViewResult.html">ufront.web.result.ViewResult</a></li>
+			<li><a href="/ufront/web/context/HttpContext.html">ufront.web.context.HttpContext</a></li>
 		</ul>
+	::else::
+		<h1>Ufront API Documentation <small ::cond api.isDefined("version")::>version ::api.getValue('version')::</small></h1>
+		<p>Ufront is an open source client-server web framework for Haxe.</p>
+		<p>This API documentation includes all the classes used in the various Ufront libraries, including documentation for any dependencies.</p>
+		<p>Most of the good stuff is in the <a href="/ufront/">ufront</a> package.</p>
+	::end::
+	::if full == ""::
 		<h3>Top Level</h3>
 	::else::
-		<h1><span class="directive">package</span> ::full::</h1>
+		<h3><span class="directive">package</span> ::full::</h3>
 	::end::
 	<table class="table table-condensed">
 		<tbody>
