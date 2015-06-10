@@ -5,8 +5,7 @@ class ImportAll {
 			"ufront.web.ControllerMacros",
 			"ufront.db.DBMacros",
 			"ufront.api.ApiMacros",
-			"ufront.app.DispatchApplication",
 			"ufront.util.BuildTools"
-		]); 
+		]);
 	}
 }
