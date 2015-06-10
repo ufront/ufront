@@ -1,13 +1,13 @@
 language: haxe
 haxe:
-	- "3.2.0"
-	- development
+  - "3.2.0"
+  - development
 neko:
-	- "2.0.0"
+  - "2.0.0"
 hxml:
-	- tool.hxml
-	- doc.hxml
+  - tool.hxml
+  - doc.hxml
 before_script:
-	- ./setupDev
+  - ./setupDev
 script:
-	- ./runtests
+  - ./runtests
