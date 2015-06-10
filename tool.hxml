@@ -3,4 +3,3 @@
 -lib mcli
 -lib compiletime
 -lib ufront-mvc
--cp src
