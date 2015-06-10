@@ -5,7 +5,6 @@ import sys.io.File;
 import sys.io.Process;
 import Sys.*;
 import haxe.Json;
-import ufront.sys.SysUtil;
 using haxe.io.Path;
 using StringTools;
 
@@ -15,7 +14,7 @@ using StringTools;
 	- ufront deploy
 	- ufront {target}
 	- ufront {target} {server}
-	
+
 	TODO: document what this is and how it works, probably with a link
 
 	Currently this is only tested on:
@@ -63,7 +62,7 @@ class DeployCommand extends UfrontCommand
 					println( 'Failed to find server $serverName in deploy.json' );
 					exit( 1 );
 				}
-				
+
 				// Complete
 				runCommands( deployConfig.hooks.afterComplete, "afterComplete" );
 			}
@@ -95,8 +94,25 @@ class DeployCommand extends UfrontCommand
 				SysUtil.mkdir( parentDir );
 				setCwd( parentDir );
 				var exitCode = Sys.command( 'git', ['clone',target.gitRepo,target.name] );
-				if ( exitCode!=0 ) 
+				if ( exitCode!=0 )
 					throw 'Failed to clone repo ${target.gitRepo}.';
+				setCwd( projectDir );
+			}
+			else {
+				step( "Pull latest git repo" );
+				setCwd( '$deployDir/' );
+				var exitCode = Sys.command( 'git', ['remote','set-url','origin',target.gitRepo] );
+				if ( exitCode!=0 )
+					throw 'Failed to set git remote "origin" to ${target.gitRepo}.';
+
+				var exitCode = Sys.command( 'git', ['reset','--','hard'] );
+				if ( exitCode!=0 )
+					throw 'Failed to run `git reset --hard` before pulling the latest deployment repo.';
+
+				var exitCode = Sys.command( 'git', ['pull'] );
+				if ( exitCode!=0 )
+					throw 'Failed to pull the latest deployment repo.';
+
 				setCwd( projectDir );
 			}
 
@@ -105,21 +121,21 @@ class DeployCommand extends UfrontCommand
 			for ( hxml in target.hxmls ) {
 				step( 'Build $hxml' );
 				var buildCmd = new BuildCommand();
-				if ( target.defines!=null && target.defines.length>0 ) 
+				if ( target.defines!=null && target.defines.length>0 )
 					buildCmd.define = target.defines.join(",");
 				if ( target.debug!=null )
 					buildCmd.debug = target.debug;
 				buildCmd.doBuild( hxml );
 			}
 			runCommands( deployConfig.hooks.afterBuild, "afterBuild" );
-			
+
 			// Copy
 			runCommands( deployConfig.hooks.beforeCopy, "beforeCopy" );
 			step( 'Copy files to deployment directory' );
 			for ( file in deployConfig.files ) {
-				if ( file.startsWith("/") ) 
+				if ( file.startsWith("/") )
 					file = file.substr(1);
-				
+
 				var filePath = '$projectDir/www/$file';
 				var deployFilePath = '$deployDir/$file';
 
@@ -150,7 +166,7 @@ class DeployCommand extends UfrontCommand
 	function deployToServer( target:DeployTarget, server:DeployServer ) {
 		println( 'Pushing to server ${target.name} ${server.name}' );
 		try {
-			
+
 			// Check server dir exists, and is a git repo
 			try {
 				step( 'Check if deployment directory exists on server' );
@@ -165,7 +181,7 @@ class DeployCommand extends UfrontCommand
 				runRemoteCommand( server, 'mkdir -p $parentDir', false );
 				runRemoteCommand( server, 'cd $parentDir && git clone ${target.gitRepo} $repoFolderName', false );
 			}
-			
+
 			// Pull
 			runRemoteCommands( server, deployConfig.hooks.beforePull, "beforePull", true );
 			var step = "Update deployment servers from repo";
@@ -254,22 +270,22 @@ typedef DeployConfig = {
 
 		/** Commands to run before copying files **/
 		?beforeCopy:Array<String>,
-		
+
 		/** Commands to run after copying files **/
 		?afterCopy:Array<String>,
-		
+
 		/** Commands to run before committing and pushing the repo to our git server **/
 		?beforePush:Array<String>,
 
 		/** Commands to run after committing and pushing the repo to our git server **/
 		?afterPush:Array<String>,
-		
+
 		/** Commands to run ON THE REMOTE SERVER before pulling the new repo **/
 		?beforePull:Array<String>,
-		
+
 		/** Commands to run ON THE REMOTE SERVER after pulling the new repo **/
 		?afterPull:Array<String>,
-		
+
 		/** Commands to run after the deployment for this target has completed **/
 		?afterComplete:Array<String>,
 	},

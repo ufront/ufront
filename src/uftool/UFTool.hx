@@ -9,14 +9,13 @@ import sys.io.File;
 import sys.io.Process;
 import sys.net.Host;
 import Sys.*;
-import ufront.sys.SysUtil;
 using haxe.io.Path;
 using StringTools;
 
 /**
 	-------------------------------------------------------------------
 	Ufront Tool:
-	A command line tool to help you manage your ufront project.  
+	A command line tool to help you manage your ufront project.
 	-------------------------------------------------------------------
 
 	Usage:
@@ -24,7 +23,7 @@ using StringTools;
 class UFTool extends CommandLine {
 
 	var ufrontDir:String;
-	
+
 	public function new( ufrontDir:String ) {
 		this.ufrontDir = ufrontDir;
 		super();
@@ -46,7 +45,7 @@ class UFTool extends CommandLine {
 	public function build( d:Dispatch ) {
 		d.dispatch(new BuildCommand());
 	}
-	
+
 	/**
 		Run a development server using "nekotools server" on localhost:2987
 		@alias s
@@ -54,7 +53,7 @@ class UFTool extends CommandLine {
 	public function server( d:Dispatch ) {
 		d.dispatch(new ServerCommand());
 	}
-	
+
 	/**
 		Run an interactive shell (ihx) and import your key project files
 		@alias i
@@ -62,7 +61,7 @@ class UFTool extends CommandLine {
 	public function interactive( d:Dispatch ) {
 		d.dispatch(new InteractiveCommand());
 	}
-	
+
 	/**
 		Run one of the tasks defined in your project.
 		@alias t
@@ -70,7 +69,7 @@ class UFTool extends CommandLine {
 	public function task( d:Dispatch ) {
 		// This is actually implemented below in main(), we just leave the method here so that documentation is generated.
 	}
-	
+
 	/**
 		Run the unit tests for your app.
 		@alias u
@@ -78,7 +77,7 @@ class UFTool extends CommandLine {
 	public function unittest( d:Dispatch ) {
 		d.dispatch(new UnitTestCommand());
 	}
-	
+
 	/**
 		Deploy the current build of your app.
 		@alias d
@@ -86,7 +85,7 @@ class UFTool extends CommandLine {
 	public function deploy( d:Dispatch ) {
 		d.dispatch( new DeployCommand(getCwd()) );
 	}
-	
+
 	///**
 	//	Watch your project using `livehaxe` and compile when changes are found.
 	//	@alias w
@@ -153,7 +152,7 @@ class UFTool extends CommandLine {
 		var finalArg = args.pop();
 		var ufrontDir:String;
 		if ( finalArg!=null && FileSystem.exists("run.n") ) {
-			// Haxelib is weird.  
+			// Haxelib is weird.
 			// If this is called via "haxelib run ufront" (or "ufront" which as an alias for "haxelib run ufront"), then Haxelib will:
 			//  - Change the cwd to the ufront haxelib folder
 			//  - Pass the users working directory as the final argument.
@@ -171,7 +170,7 @@ class UFTool extends CommandLine {
 			}
 		}
 		else {
-			// Probably not weird haxelib behaviour.  
+			// Probably not weird haxelib behaviour.
 			// Get ufrontDir by using 'haxelib path', reading the first line, and trimming the '/src/' from the end.
 			// And put the finalArg back in it's place.
 			if ( finalArg!=null ) args.push( finalArg );
@@ -196,4 +195,3 @@ class UFTool extends CommandLine {
 		}
 	}
 }
-				
