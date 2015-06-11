@@ -5,8 +5,9 @@ haxe:
 hxml:
   - tool.hxml
   - doc.hxml
+before_install:
+  - sudo apt-get install neko
 before_script:
-  - apt-get install neko
   - ./setupDev
 script:
   - ./runtests
