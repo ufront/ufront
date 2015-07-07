@@ -1,0 +1,4 @@
+/** Only show the ufront package in the navigation. **/
+#nav:not(.searching) > ul > li:not(.package-ufront) {
+	display: none;
+}

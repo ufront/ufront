@@ -13,12 +13,14 @@
 		</ul>
 	::else::
 		<h1>Ufront API Documentation <small ::cond api.isDefined("version")::>version ::api.getValue('version')::</small></h1>
-		<p>Ufront is an open source client-server web framework for Haxe.</p>
-		<p>This API documentation includes all the classes used in the various Ufront libraries, including documentation for any dependencies.</p>
-		<p>Most of the good stuff is in the <a href="/ufront/">ufront</a> package.</p>
+		<p>Ufront is an open source client-server web framework for Haxe.  This API documentation includes all the classes used in the various Ufront libraries.</p>
+		<p>
+			The menu on the left only shows the <a href="/ufront/">ufront</a> package, which is where most of the good stuff is.
+			The API documentation for any dependencies is included in the search and in links in the documentation, but is hidden from the menu to avoid clutter.
+		</p>
 	::end::
 	::if full == ""::
-		<h3>Top Level</h3>
+		<h3>All packages and types (including dependencies)</h3>
 	::else::
 		<h3><span class="directive">package</span> ::full::</h3>
 	::end::
