@@ -1,17 +1,19 @@
 language: haxe
 haxe:
   - "3.2.0"
-  #- development
+  #- development # Commented out until we have time to investigate the failures.
 env:
-  - MYSQL_HOST="127.0.0.1" MYSQL_PORT="3306" MYSQL_USER="root" MYSQL_PASSWORD="" MYSQL_DATABASE="test"
+  - MYSQL_HOST="127.0.0.1" MYSQL_PORT="3306" MYSQL_USER="root" MYSQL_PASSWORD="" MYSQL_DATABASE="test" # For ufront-orm tests
 hxml:
   - tool.hxml
   - doc.hxml
 before_install:
   - sudo apt-get install neko
-  - mysql -e "create database IF NOT EXISTS test;" -uroot
+  - mysql -e "create database IF NOT EXISTS test;" -uroot # For ufront-orm tests.
 before_script:
-  - haxelib install dox
+  - haxelib install dox # For compiling API docs.
+  - haxelib install detox # For ufront-mvc unit tests.
+  - haxelib setup ufront
   - ./setupDev
 script:
   - ./runtests
