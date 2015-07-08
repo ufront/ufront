@@ -11,8 +11,8 @@ before_install:
   - sudo apt-get install neko
   - mysql -e "create database IF NOT EXISTS test;" -uroot # For ufront-orm tests.
 before_script:
-  - haxelib install dox # For compiling API docs.
-  - haxelib install detox # For ufront-mvc unit tests.
+  - yes | haxelib install dox # For compiling API docs.
+  - yes | haxelib install detox # For ufront-mvc unit tests.
   - haxelib setup ufront
   - ./setupDev
 script:
