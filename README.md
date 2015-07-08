@@ -18,6 +18,8 @@ Installing from haxelib:
 Using the latest git version:
 
     haxelib git ufront git@github.com:ufront/ufront.git <specific branch or tag, if not master>
+    cd <haxelib path>ufront/git
+    ./setupDev.sh
     sudo haxelib run ufront --setup
 
 Dependencies
