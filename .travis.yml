@@ -11,6 +11,7 @@ before_install:
   - sudo apt-get install neko
   - mysql -e "create database IF NOT EXISTS test;" -uroot
 before_script:
+  - haxelib install dox
   - ./setupDev
 script:
   - ./runtests

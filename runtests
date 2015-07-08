@@ -6,7 +6,7 @@
 function stop {
 	PROGNAME=$(basename $0)
 	echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
-	exit 1
+	#exit 1
 }
 
 # Compile our docs.
@@ -14,7 +14,6 @@ haxe doc.hxml || stop "Failed to compile API documentation"
 rm -Rf doc/api/*
 mkdir -p doc/api/
 cd doc/
-haxelib install dox
 haxelib run dox -i . -o api/ --title "Ufront-API-Docs" -in . -ex Test$ -t ufront-api/templates/ -res ufront-api/resources/ || stop "Failed to proces API docs"
 cd ../
 
