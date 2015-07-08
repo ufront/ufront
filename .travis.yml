@@ -13,7 +13,7 @@ before_install:
 before_script:
   - yes | haxelib install ufront # For installing all the dependencies that aren't in the submodules.
   - yes | haxelib install dox # For compiling API docs.
-  - yes | haxelib install detox # For ufront-mvc unit tests.
+  - yes | haxelib install detox 1.0.0-rc.10 # For ufront-mvc unit tests.
   - yes | haxelib install mockatoo # For compiling API docs, ufront-mvc unit tests.
   - haxelib dev ufront # Get the `ufront` command working.
   - ./setupDev # Set up the submodules as the `haxelib dev` paths.
