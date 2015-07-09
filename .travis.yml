@@ -2,8 +2,6 @@ language: haxe
 haxe:
   - "3.2.0"
   - development
-neko:
-  - development
 matrix:
   allow_failures:
     - haxe: development # Allow development to fail until I have time to investigate.
@@ -17,6 +15,7 @@ addons:
   apt:
     packages:
       - php5-cli
+      - neko
 before_install:
   - sudo apt-get install php5-cli
   - mysql -e "create database IF NOT EXISTS test;" -uroot # For ufront-orm tests.
