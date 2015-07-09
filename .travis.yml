@@ -11,7 +11,7 @@ env:
 before_install:
   - sudo add-apt-repository ppa:ondrej/php5 -y
   - sudo apt-get update -q
-  - sudo apt-get install php5-cli
+  - sudo apt-get install php5-cli php5-sqlite php5-mysql libsqlite3-0 libsqlite3-dev
   - mysql -e "create database IF NOT EXISTS test;" -uroot # For ufront-orm tests.
 install:
   - yes | haxelib install ufront # For installing all the dependencies that aren't in the submodules.
