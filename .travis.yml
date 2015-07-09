@@ -16,7 +16,7 @@ before_install:
 install:
   - yes | haxelib install ufront # For installing all the dependencies that aren't in the submodules.
   - yes | haxelib install ufront-client # For installing all the dependencies that aren't in the submodules.
-  - yes | haxelib install dox # For compiling API docs.
+  - yes | haxelib git dox https://github.com/dpeek/dox.git # For compiling API docs.
   - yes | haxelib install utest # For compiling API docs.
   - yes | haxelib install detox 1.0.0-rc.10 # For ufront-mvc unit tests.
   - yes | haxelib install mockatoo # For compiling API docs, ufront-mvc unit tests.
