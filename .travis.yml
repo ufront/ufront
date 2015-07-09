@@ -14,6 +14,8 @@ addons:
   # Alternatively, we can use `sudo apt-get install ...` in the `install:` section.
   # http://docs.travis-ci.com/user/apt/#Adding-APT-Packages
   apt:
+    sources:
+      - ondrej/php5
     packages:
       - php5-cli
       - sqlite3
@@ -30,6 +32,7 @@ install:
   - haxelib list
   - echo $(ls -l ~/neko)
   - echo $(php --version)
+  - echo $(apt-cache showpkg php5-cli)
 hxml:
   - tool.hxml
   - doc.hxml
