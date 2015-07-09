@@ -31,5 +31,5 @@ cd ../../
 
 # Compile ufront-hello
 cd submodules/hello
-ufront b || stop "Failed to compile hello world example"
+haxelib run ufront b || stop "Failed to compile hello world example"
 cd ../../
