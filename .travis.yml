@@ -1,23 +1,36 @@
 language: haxe
 haxe:
   - "3.2.0"
-  #- development # Commented out until we have time to investigate the failures.
+  - development
 neko:
-  - "2.0.0"
+  - development
+matrix:
+  allow_failures:
+    - haxe: development # Allow development to fail until I have time to investigate.
 env:
   - MYSQL_HOST="127.0.0.1" MYSQL_PORT="3306" MYSQL_USER="root" MYSQL_PASSWORD="" MYSQL_DATABASE="test" # For ufront-orm tests
-hxml:
-  - tool.hxml
-  - doc.hxml
+addons:
+  # This is the preferred way to install apt packages.
+  # However, it only allow some but not all packages.
+  # Alternatively, we can use `sudo apt-get install ...` in the `install:` section.
+  # http://docs.travis-ci.com/user/apt/#Adding-APT-Packages
+  apt:
+    packages:
+      - php5-cli
 before_install:
   - sudo apt-get install php5-cli
   - mysql -e "create database IF NOT EXISTS test;" -uroot # For ufront-orm tests.
-before_script:
-  - yes | haxelib install ufront # For installing all the dependencies that aren't in the submodules.
-  - yes | haxelib install dox # For compiling API docs.
-  - yes | haxelib install detox 1.0.0-rc.10 # For ufront-mvc unit tests.
-  - yes | haxelib install mockatoo # For compiling API docs, ufront-mvc unit tests.
-  - haxelib dev ufront # Get the `ufront` command working.
+install:
+  - haxelib install ufront # For installing all the dependencies that aren't in the submodules.
+  - haxelib install dox # For compiling API docs.
+  - haxelib install detox 1.0.0-rc.10 # For ufront-mvc unit tests.
+  - haxelib install mockatoo # For compiling API docs, ufront-mvc unit tests.
+  - haxelib run ufront setup # Get the `ufront` command working.
   - ./setupDev # Set up the submodules as the `haxelib dev` paths.
+  - haxelib list
+hxml:
+  - tool.hxml
+  - doc.hxml
+before_script:
 script:
   - ./runtests
