@@ -2,8 +2,7 @@ language: haxe
 haxe:
   - "3.2.0"
   - development
-neko:
-  - "2.0.0"
+neko: "2.0.0"
 matrix:
   allow_failures:
     - haxe: development # Allow development to fail until I have time to investigate.
