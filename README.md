@@ -26,6 +26,8 @@ Using the latest git version:
     ./setupDev
     sudo haxelib run ufront --setup
 
+A "hello world" example is included in `submodules/hello/` to give you an example of how to get started.
+
 Repos
 -----
 
