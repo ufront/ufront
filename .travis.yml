@@ -28,6 +28,7 @@ install:
   - yes | haxelib install mockatoo # For compiling API docs, ufront-mvc unit tests.
   - ./setupDev # Set up the submodules as the `haxelib dev` paths.
   - haxelib list
+  - echo $(ls -l ~/neko)
 hxml:
   - tool.hxml
   - doc.hxml
