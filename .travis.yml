@@ -16,6 +16,7 @@ addons:
   apt:
     packages:
       - php5-cli
+      - sqlite3
 before_install:
   - mysql -e "create database IF NOT EXISTS test;" -uroot # For ufront-orm tests.
 install:
