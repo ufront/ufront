@@ -1,47 +1,61 @@
 ufront
 ======
 
-[![Join the chat at https://gitter.im/ufront/ufront](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ufront/ufront?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/ufront/ufront.svg?branch=master)](https://travis-ci.org/ufront/ufront) [![Join the chat at https://gitter.im/ufront/ufront](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ufront/ufront?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Ufront is a powerful MVC web framework for Haxe. It gives you quick development, shared code on the client and server, powerful extensibility, easy testing, and targets PHP or Neko on the server, and mostly JS (though anything is possible) on the client.  A NodeJS target would be very feasible, and may be included in the future.
+Ufront is a client/server MVC web framework for Haxe.
+It allows you to share models, views and controllers between both server-side and client-side code.
+Client side, your app will run as a fast single-page-app.
+But everything can still work server-side - which makes for fast first page loads, great SEO, and a good fallback for old browsers.
 
-This is the mothership repo - most of the actual code is contained in the other ufront repos, such as ufront-mvc.
+Currently Ufront targets Neko and PHP on the server, and JS on the client.
+A NodeJS target is partially implemented, and it would be possible to also support Python, Java, C# and C++ with a little work.
 
 Installing
 ----------
 
-Installing from haxelib:
+Installing from haxelib (please note, the versions on haxelib are not up-to-date currently):
 
     haxelib install ufront
     sudo haxelib run ufront --setup
 
 Using the latest git version:
 
-    haxelib git ufront git@github.com:ufront/ufront.git <specific branch or tag, if not master>
+    git clone --recursive https://github.com/ufront/ufront.git
+    cd ufront
+    ./setupDev
     sudo haxelib run ufront --setup
 
-Dependencies
-------------
+A "hello world" example is included in `submodules/hello/` to give you an example of how to get started.
 
-The `ufront` haxelib includes dependencies to:
+Repos
+-----
 
- - [ufront-mvc](https://github.com/ufront/ufront-mvc)
- - [ufront-orm](https://github.com/ufront/ufront-orm)
- - [ufront-easyauth](https://github.com/ufront/ufront-easyauth)
- - [ufront-clientds](https://github.com/ufront/ufront-clientds)
- - [ufront-ufadmin](https://github.com/ufront/ufront-ufadmin)
- - [ufront-uftasks](https://github.com/ufront/ufront-uftasks)
- - [mcli](https://github.com/waneck/mcli)
- - [compiletime](https://github.com/jasononeil/compiletime)
+The `ufront` and `ufront-client` libraries are the "motherships" that hold together each of the ufront modules:
 
-as well as other libraries which these are dependent on, such as [thx](https://github.com/fponticelli/thx) and [hxevents](https://github.com/ufront/hxevents).
+ - [ufront](https://github.com/ufront/ufront) - All the ufront modules required on the server-side.
+ - [ufront-client](https://github.com/ufront/ufront-client) - All the ufront modules required on teh client-side.
+
+These ufront libs are part of the core, used in both `ufront` and `ufront-client`:
+
+ - [ufront-mvc](https://github.com/ufront/ufront-mvc) - The MVC framework. Provides routing, controllers, views, APIs, remoting, dependency injection and more.
+ - [ufront-orm](https://github.com/ufront/ufront-orm) - An ORM that makes it easy to have models with validation, serialization, automatic relationships and more.
+ - [ufront-easyauth](https://github.com/ufront/ufront-easyauth) - An auth system that gives you users, groups and permissions. Fairly simplistic but flexible. Easy to replace if you have different needs.
+
+Then there are other libs, which you can install and use, but are not included by default:
+
+ - [ufront-ufadmin](https://github.com/ufront/ufront-ufadmin) - An admin area for your web-app.
+ - [ufront-uftasks](https://github.com/ufront/ufront-uftasks) - Easy command line tasks that integrate with your models and APIs.
+ - [ufront-mail](https://github.com/ufront/ufront-mail) - Easily send emails with Ufront.
 
 Using the ufront tool
 ---------------------
 
+Ufront comes with a helper tool in haxelib. To run it:
+
     haxelib run ufront
 
-Or, if you ran the `--setup` command:
+Or, if you ran the `haxelib run ufront --setup` command:
 
     ufront
 
