@@ -2,13 +2,15 @@ language: haxe
 haxe:
   - "3.2.0"
   #- development # Commented out until we have time to investigate the failures.
+neko:
+  - "2.0.0"
 env:
   - MYSQL_HOST="127.0.0.1" MYSQL_PORT="3306" MYSQL_USER="root" MYSQL_PASSWORD="" MYSQL_DATABASE="test" # For ufront-orm tests
 hxml:
   - tool.hxml
   - doc.hxml
 before_install:
-  - sudo apt-get install neko
+  - sudo apt-get install php5-cli
   - mysql -e "create database IF NOT EXISTS test;" -uroot # For ufront-orm tests.
 before_script:
   - yes | haxelib install ufront # For installing all the dependencies that aren't in the submodules.
