@@ -8,18 +8,10 @@ matrix:
     - haxe: development # Allow development to fail until I have time to investigate.
 env:
   - MYSQL_HOST="127.0.0.1" MYSQL_PORT="3306" MYSQL_USER="root" MYSQL_PASSWORD="" MYSQL_DATABASE="test" # For ufront-orm tests
-addons:
-  # This is the preferred way to install apt packages.
-  # However, it only allow some but not all packages.
-  # Alternatively, we can use `sudo apt-get install ...` in the `install:` section.
-  # http://docs.travis-ci.com/user/apt/#Adding-APT-Packages
-  apt:
-    sources:
-      - ondrej/php5
-    packages:
-      - php5-cli
-      - sqlite3
 before_install:
+  - sudo add-apt-repository ppa:ondrej/php5 -y
+  - sudo apt-get update -q
+  - sudo apt-get install php5-cli
   - mysql -e "create database IF NOT EXISTS test;" -uroot # For ufront-orm tests.
 install:
   - yes | haxelib install ufront # For installing all the dependencies that aren't in the submodules.
