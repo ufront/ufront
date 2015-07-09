@@ -2,6 +2,8 @@ language: haxe
 haxe:
   - "3.2.0"
   - development
+neko:
+  - "2.0.0"
 matrix:
   allow_failures:
     - haxe: development # Allow development to fail until I have time to investigate.
@@ -15,16 +17,15 @@ addons:
   apt:
     packages:
       - php5-cli
-      - neko
 before_install:
   - sudo apt-get install php5-cli
   - mysql -e "create database IF NOT EXISTS test;" -uroot # For ufront-orm tests.
 install:
-  - haxelib install ufront # For installing all the dependencies that aren't in the submodules.
-  - haxelib install dox # For compiling API docs.
-  - haxelib install detox 1.0.0-rc.10 # For ufront-mvc unit tests.
-  - haxelib install mockatoo # For compiling API docs, ufront-mvc unit tests.
-  - haxelib run ufront setup # Get the `ufront` command working.
+  - yes | haxelib install ufront # For installing all the dependencies that aren't in the submodules.
+  - yes | haxelib install dox # For compiling API docs.
+  - yes | haxelib install detox 1.0.0-rc.10 # For ufront-mvc unit tests.
+  - yes | haxelib install mockatoo # For compiling API docs, ufront-mvc unit tests.
+  - yes | haxelib run ufront setup # Get the `ufront` command working.
   - ./setupDev # Set up the submodules as the `haxelib dev` paths.
   - haxelib list
 hxml:
