@@ -23,7 +23,7 @@ install:
   - yes | haxelib install dox # For compiling API docs.
   - yes | haxelib install detox 1.0.0-rc.10 # For ufront-mvc unit tests.
   - yes | haxelib install mockatoo # For compiling API docs, ufront-mvc unit tests.
-  - yes | haxelib run ufront --setup # Get the `ufront` command working.
+  - sudo haxelib run ufront --setup # Get the `ufront` command working.
   - ./setupDev # Set up the submodules as the `haxelib dev` paths.
   - haxelib list
 hxml:
