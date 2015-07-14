@@ -26,3 +26,9 @@
 [submodule "submodules/hello"]
 	path = submodules/hello
 	url = https://github.com/ufront/hello.git
+[submodule "submodules/hxnodejs"]
+	path = submodules/hxnodejs
+	url = https://github.com/HaxeFoundation/hxnodejs.git
+[submodule "submodules/hxexpress"]
+	path = submodules/hxexpress
+	url = https://github.com/abedev/hxexpress.git
