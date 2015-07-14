@@ -25,3 +25,13 @@
 -cp doc/src
 -js doc/client.js
 -xml doc/js-client.xml
+
+# NodeJS
+--next
+-lib ufront
+-lib hxnodejs
+-lib express
+-cp doc/src
+--macro allowPackage("sys")
+-js doc/nodejs.js
+-xml doc/js-node.xml

@@ -8,8 +8,15 @@ It allows you to share models, views and controllers between both server-side an
 Client side, your app will run as a fast single-page-app.
 But everything can still work server-side - which makes for fast first page loads, great SEO, and a good fallback for old browsers.
 
-Currently Ufront targets Neko and PHP on the server, and JS on the client.
-A NodeJS target is partially implemented, and it would be possible to also support Python, Java, C# and C++ with a little work.
+Platform Support
+----------------
+
+* __Neko__ (Server side)
+* __PHP__ (Server side)
+* __NodeJS__ (Server side, experimental)
+* __JS__ (Client side)
+
+It would be possible to also support Python, Java, C# and C++ with a little work.
 
 Installing
 ----------
@@ -27,6 +34,7 @@ Using the latest git version:
     sudo haxelib run ufront --setup
 
 A "hello world" example is included in `submodules/hello/` to give you an example of how to get started.
+This example includes builds for Neko, PHP and NodeJS in `server.hxml`, and for Client JS in `client.hxml`.
 
 Repos
 -----
@@ -61,10 +69,10 @@ Or, if you ran the `haxelib run ufront --setup` command:
 
 You then have this usage:
 
-	b, build               Build the current project 
-	s, server              Run a development server using "nekotools server" on 
+	b, build               Build the current project
+	s, server              Run a development server using "nekotools server" on
 	                       localhost:2987  
-	i, shell               Run an interactive shell (ihx) and import your key 
+	i, shell               Run an interactive shell (ihx) and import your key
 	                       project libraries and files  
 	t, task                Run one of the tasks defined in your project
 	u, unittests           Run the unit tests for your app
@@ -72,11 +80,11 @@ You then have this usage:
 
 In future, I would like to add:
 
-	n, create              Create a new ufront project, controller, model, API 
+	n, create              Create a new ufront project, controller, model, API
 	                       or view based on simple templates
-	c, configure           Configure the current project's settings 
+	c, configure           Configure the current project's settings
 	d, documentation       Regenerate the documentation for your project
-	w, watch               Watch your project using `livehaxe` and compile when 
+	w, watch               Watch your project using `livehaxe` and compile when
 	                       changes are found
 
 Feel free to contribute!
