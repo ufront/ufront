@@ -14,7 +14,7 @@
     "compiletime": "2.5.1",
     "tink_core": "1.0.0-rc.11",
     "tink_macro": "0.6.4",
-    "minject": "",
+    "minject": "2.0.0-rc.1",
     "ufront-easyauth": "",
     "PBKDF2": "1.0.0"
   }

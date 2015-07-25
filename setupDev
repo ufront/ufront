@@ -3,7 +3,6 @@
 haxelib dev ufront .
 haxelib dev hxnodejs submodules/hxnodejs
 haxelib dev express submodules/hxexpress
-haxelib dev minject submodules/minject
 haxelib dev ufront-client submodules/ufront-client
 haxelib dev ufront-easyauth submodules/ufront-easyauth
 haxelib dev ufront-mail submodules/ufront-mail
