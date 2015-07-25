@@ -16,10 +16,6 @@
 [submodule "submodules/ufront-client"]
 	path = submodules/ufront-client
 	url = https://github.com/ufront/ufront-client.git
-[submodule "submodules/minject"]
-	path = submodules/minject
-	url = https://github.com/massiveinteractive/minject.git
-	branch = v2
 [submodule "submodules/ufront-mail"]
 	path = submodules/ufront-mail
 	url = https://github.com/ufront/ufront-mail.git
