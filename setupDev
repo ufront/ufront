@@ -10,3 +10,5 @@ haxelib dev ufront-mvc submodules/ufront-mvc
 haxelib dev ufront-orm submodules/ufront-orm
 haxelib dev ufront-ufadmin submodules/ufront-ufadmin
 haxelib dev ufront-uftasks submodules/ufront-uftasks
+haxelib dev minject
+haxelib set minject 2.0.0-rc.1
