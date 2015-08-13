@@ -19,8 +19,8 @@ install:
   - yes | haxelib git dox https://github.com/dpeek/dox.git # For compiling API docs.
   - yes | haxelib install utest # For compiling API docs.
   - yes | haxelib install detox 1.0.0-rc.10 # For ufront-mvc unit tests.
-  - yes | haxelib install minject 2.0.0-rc.1 # For ufront-mvc unit tests.
-  - yes | haxelib install pushstate 2.0.0 # Ufront-client dependency.
+  - yes | haxelib install minject 2.0.0-rc.1 # ufront-mvc dependency.
+  - yes | haxelib install pushstate 2.0.0 # ufront-client dependency.
   - yes | haxelib install mockatoo # For compiling API docs, ufront-mvc unit tests.
   - ./setupDev # Set up the submodules as the `haxelib dev` paths.
   - haxelib list
