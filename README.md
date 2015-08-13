@@ -50,7 +50,7 @@ These ufront libs are part of the core, used in both `ufront` and `ufront-client
  - [ufront-orm](https://github.com/ufront/ufront-orm) - An ORM that makes it easy to have models with validation, serialization, automatic relationships and more.
  - [ufront-easyauth](https://github.com/ufront/ufront-easyauth) - An auth system that gives you users, groups and permissions. Fairly simplistic but flexible. Easy to replace if you have different needs.
 
-Then there are other libs, which you can install and use, but are not included by default:
+Then there are other libs, which you can install and use, but are not included in the haxelib by default:
 
  - [ufront-ufadmin](https://github.com/ufront/ufront-ufadmin) - An admin area for your web-app.
  - [ufront-uftasks](https://github.com/ufront/ufront-uftasks) - Easy command line tasks that integrate with your models and APIs.
