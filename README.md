@@ -33,6 +33,11 @@ Using the latest git version:
     ./setupDev
     sudo haxelib run ufront --setup
 
+To update that git repository to a newer version:
+
+    git pull
+    git submodule update --recursive
+
 A "hello world" example is included in `submodules/hello/` to give you an example of how to get started.
 This example includes builds for Neko, PHP and NodeJS in `server.hxml`, and for Client JS in `client.hxml`.
 
