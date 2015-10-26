@@ -1,6 +1,7 @@
 -main ImportAll
 -lib mockatoo
 -lib utest
+-D doc_gen
 --no-output
 --each
 
