@@ -7,6 +7,8 @@
 
 # Neko
 -lib ufront
+-lib ufront-uftasks
+-lib ufront-ufadmin
 -cp doc/src
 -D server
 -neko doc/neko.n
@@ -16,6 +18,8 @@
 --next
 -D server
 -lib ufront
+-lib ufront-uftasks
+-lib ufront-ufadmin
 -cp doc/src
 -php doc/php/
 -xml doc/php.xml
