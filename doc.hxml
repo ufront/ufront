@@ -1,6 +1,9 @@
--main ImportAll
+-main UFImportAll
+-cp doc/src
 -lib mockatoo
 -lib utest
+-lib erazor
+-lib mustache
 -D doc_gen
 --no-output
 --each
@@ -9,7 +12,6 @@
 -lib ufront
 -lib ufront-uftasks
 -lib ufront-ufadmin
--cp doc/src
 -D server
 -neko doc/neko.n
 -xml doc/neko.xml
@@ -20,14 +22,12 @@
 -lib ufront
 -lib ufront-uftasks
 -lib ufront-ufadmin
--cp doc/src
 -php doc/php/
 -xml doc/php.xml
 
 # JS (Client)
 --next
 -lib ufront-client
--cp doc/src
 -js doc/client.js
 -xml doc/js-client.xml
 
@@ -36,7 +36,6 @@
 -lib ufront
 -lib hxnodejs
 -lib express
--cp doc/src
---macro allowPackage("sys")
+-D server
 -js doc/nodejs.js
 -xml doc/js-node.xml

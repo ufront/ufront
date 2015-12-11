@@ -1,4 +1,4 @@
-class ImportAll {
+class UFImportAll {
 	static function main() {
 		// Include all the things we could want, except for macro classes.
 		CompileTime.importPackage( "ufront", true, [
