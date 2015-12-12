@@ -15,15 +15,10 @@ before_install:
   - sudo apt-get install php5-cli php5-sqlite php5-mysql libsqlite3-0 libsqlite3-dev
   - mysql -e "create database IF NOT EXISTS test;" -uroot # For ufront-orm tests.
 install:
-  - yes | haxelib install ufront # For installing all the dependencies that aren't in the submodules.
-  - yes | haxelib install ufront-client # For installing all the dependencies that aren't in the submodules.
+  - yes | haxelib install doc.hxml # Haxelibs we need installed.
+  - yes | haxelib install submodules/ufront-mvc/test.hxml # Haxelibs we need installed.
+  - yes | haxelib install submodules/ufront-orm/test.hxml # Haxelibs we need installed.
   - yes | haxelib git dox https://github.com/dpeek/dox.git # For compiling API docs.
-  - yes | haxelib install utest # For compiling API docs.
-  - yes | haxelib install detox 1.0.0-rc.10 # For ufront-mvc unit tests.
-  - yes | haxelib install erazor # For ufront-mvc unit tests.
-  - yes | haxelib install minject 2.0.0-rc.1 # ufront-mvc dependency.
-  - yes | haxelib install pushstate 2.0.0 # ufront-client dependency.
-  - yes | haxelib install mockatoo # For compiling API docs, ufront-mvc unit tests.
   - ./setupDev # Set up the submodules as the `haxelib dev` paths.
   - haxelib list
 hxml:
