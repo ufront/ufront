@@ -28,7 +28,7 @@ cd ../../
 
 # Ufront-orm tests.
 cd submodules/ufront-orm
-./testAll.sh #|| stop "ufront-orm tests failed" # Currently allowing these to fail.
+./testAll.sh || stop "ufront-orm tests failed"
 cd ../../
 
 # Compile ufront-hello
