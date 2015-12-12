@@ -5,17 +5,12 @@
   "tags": ["ufront","web","cli","shell","interactive","neko"],
   "description": "Ufront is a client/server web framework written in Haxe.  This library contains links to common ufront libraries, and a command line tool to help you manage your ufront project.",
   "contributors": ["jason"],
-  "releasenote": "Ufront-MVC patch release.",
-  "version": "2.0.0-rc.2",
+  "releasenote": "2.0.0 stable release, featuring Ufront-MVC 1.1.0, Ufront-ORM 1.1.0 and Ufront-EasyAuth 1.0.0.  Works well with Ufront-Client 2.0.0",
+  "version": "2.0.0",
   "url": "https://github.com/ufront/ufront",
   "dependencies": {
-    "ufront-mvc": "1.0.1",
-    "ufront-orm": "1.0.0",
-    "compiletime": "2.5.1",
-    "tink_core": "1.0.0-rc.11",
-    "tink_macro": "0.6.4",
-    "minject": "2.0.0-rc.1",
-    "ufront-easyauth": "1.0.0-rc.11",
-    "PBKDF2": "1.0.0"
+    "ufront-mvc": "1.1.0",
+    "ufront-orm": "1.1.0",
+    "ufront-easyauth": "1.0.0"
   }
 }
