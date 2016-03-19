@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -x #echo on
+
 haxelib dev ufront .
 haxelib dev ufront-client submodules/ufront-client
 haxelib dev ufront-easyauth submodules/ufront-easyauth
@@ -12,6 +14,6 @@ haxelib dev ufront-uftasks submodules/ufront-uftasks
 haxelib dev minject
 haxelib set minject 2.0.0-rc.1
 haxelib dev hxnodejs
-haxelib set hxnodejs 4.0.1
+haxelib set hxnodejs 4.0.4
 haxelib dev express
 haxelib set express 0.3.1
