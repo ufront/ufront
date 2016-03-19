@@ -20,10 +20,6 @@ install:
   - yes | haxelib git dox https://github.com/dpeek/dox.git # For compiling API docs.
   - ./setupDev # Set up the submodules as the `haxelib dev` paths.
   - haxelib list
-hxml:
-  - tool.hxml
-  - doc.hxml
-before_script:
 script:
   - ./runtests
 notifications:
