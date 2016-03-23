@@ -1,5 +1,6 @@
 *.zip
 doc/api
 doc/*.xml
+lib/
 
 uploadapi.sh
