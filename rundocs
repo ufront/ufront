@@ -5,4 +5,7 @@ mkdir -p doc/api/
 
 cd doc/
 haxelib run dox -i . -o api/ --title "UfrontAPIDocs" -in . -ex Test$ -t ufront-api/templates/ -res ufront-api/resources/
-nekotools server -p 2001
+
+if [ $1 != "--no-server" ]; then
+	nekotools server -p 2001
+fi

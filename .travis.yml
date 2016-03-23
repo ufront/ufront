@@ -18,6 +18,7 @@ install:
   - yes | haxelib git dox https://github.com/dpeek/dox.git # For compiling API docs.
   - haxelib list
 script:
+  - ./rundocs --no-server
 notifications:
   webhooks:
     urls:
