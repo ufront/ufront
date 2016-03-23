@@ -4,12 +4,14 @@
 -lib utest
 -lib erazor
 -lib mustache
+-lib ufront-mvc
+-lib ufront-orm
+-lib ufront-easyauth
 -D doc_gen
 --no-output
 --each
 
 # Neko
--lib ufront
 -lib ufront-uftasks
 -lib ufront-ufadmin
 -D server
@@ -18,22 +20,21 @@
 
 # PHP
 --next
--D server
--lib ufront
 -lib ufront-uftasks
 -lib ufront-ufadmin
+-D server
 -php doc/php/
 -xml doc/php.xml
 
 # JS (Client)
 --next
--lib ufront-client
+-lib pushstate
+-D client 
 -js doc/client.js
 -xml doc/js-client.xml
 
 # NodeJS
 --next
--lib ufront
 -lib hxnodejs
 -lib express
 -D server

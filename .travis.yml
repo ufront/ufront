@@ -15,10 +15,7 @@ before_install:
   - mysql -e "create database IF NOT EXISTS test;" -uroot # For ufront-orm tests.
 install:
   - yes | haxelib install doc.hxml # Haxelibs we need installed.
-  - yes | haxelib install submodules/ufront-mvc/test.hxml # Haxelibs we need installed.
-  - yes | haxelib install submodules/ufront-orm/test.hxml # Haxelibs we need installed.
   - yes | haxelib git dox https://github.com/dpeek/dox.git # For compiling API docs.
-  - ./setupDev # Set up the submodules as the `haxelib dev` paths.
   - haxelib list
 script:
   - ./runtests
