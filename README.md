@@ -45,7 +45,7 @@ haxelib update ufront-mvc
 Getting started
 ---------------
 
-A "hello world" can be found in the [ufront/hello](https://github.com/ufront/ufront) repo to give you an example of how to get started.
+A "hello world" can be found in the [ufront/hello](https://github.com/ufront/hello) repo to give you an example of how to get started.
 This example includes builds for Neko, PHP and NodeJS in `server.hxml`, and for Client JS in `client.hxml`.
 
 You can also visit the [ufront-nodejs-guide](https://github.com/kevinresol/ufront-nodejs-guide) for a more comprensive guide.
